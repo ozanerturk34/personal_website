@@ -1,0 +1,88 @@
+import Image from "next/image";
+import type { GetStaticPaths, GetStaticProps } from "next";
+import type { ParsedUrlQuery } from "querystring";
+
+import { Article, type SimpleArticle } from "@/models/Article";
+
+// TODO: Remove this
+import MockArticlesAPI from "@/__mock__/MockArticlesAPI";
+
+interface ArticleProps {
+  article: SimpleArticle;
+}
+
+interface ArticleParams extends ParsedUrlQuery {
+  id: string;
+}
+
+// TODO: Remove this
+const mockArticlesAPI = MockArticlesAPI.getInstance();
+
+const ArticlePage = ({ article: _article }: ArticleProps) => {
+  const article = Article.mapToArticle(_article);
+  return (
+    <>
+      <div>
+        <h1>{article.title}</h1>
+        <p>{article.getContent()}</p>
+        <Image
+          src={article.image}
+          alt={`${article.title} Image`}
+          width={30}
+          height={30}
+        />
+      </div>
+      <div>COMMENTS</div>
+    </>
+  );
+};
+
+// This function gets called at build time
+export const getStaticPaths: GetStaticPaths<ArticleParams> = async () => {
+  // // Call strapi CMS for available articles
+  // const res = await fetch('https://.../posts')
+  // const posts = await res.json()
+
+  // Get the paths we want to pre-render based on posts
+
+  // TODO: Remove mock API
+  const articles = mockArticlesAPI.getArticles();
+  const paths = articles.map((article) => ({
+    params: {
+      id: article.id.toString(),
+    },
+  }));
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps<
+  ArticleProps,
+  ArticleParams
+> = async ({ params }) => {
+  // // Call strapi CMS for specific article data
+  // const res = await fetch('https://.../posts')
+  // const posts = await res.json()
+
+  if (!params?.id) {
+    // TODO: Add error handling
+    throw new Error("WTF?");
+  }
+
+  const article = mockArticlesAPI.findArticleById(params.id);
+
+  if (!article) {
+    // TODO: Add error handling
+    throw new Error("WTF?");
+  }
+
+  return {
+    props: {
+      article,
+    },
+  };
+};
+
+export default ArticlePage;
