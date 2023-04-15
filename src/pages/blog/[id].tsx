@@ -32,7 +32,6 @@ const ArticlePage = ({ article: _article }: ArticleProps) => {
           height={30}
         />
       </div>
-      <div>COMMENTS</div>
     </>
   );
 };
