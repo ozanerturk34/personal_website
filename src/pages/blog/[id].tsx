@@ -2,32 +2,31 @@ import Image from "next/image";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
 
-import { Article, type SimpleArticle } from "@/models/Article";
+import { ArticleBuilder, type Article } from "@models/Article";
 
 // TODO: Remove this
-import MockArticlesAPI from "@/__mock__/MockArticlesAPI";
+import MockArticlesAPI from "../../__mock__/MockArticlesAPI";
+const mockArticlesAPI = MockArticlesAPI.getInstance();
 
 interface ArticleProps {
-  article: SimpleArticle;
+  article: Article;
 }
 
 interface ArticleParams extends ParsedUrlQuery {
   id: string;
 }
 
-// TODO: Remove this
-const mockArticlesAPI = MockArticlesAPI.getInstance();
-
-const ArticlePage = ({ article: _article }: ArticleProps) => {
-  const article = Article.mapToArticle(_article);
+const ArticlePage = ({ article: simpleArticle }: ArticleProps) => {
+  const { getContent, thumbnail, title } =
+    ArticleBuilder.mapToArticleBuilder(simpleArticle);
   return (
     <>
       <div>
-        <h1>{article.title}</h1>
-        <p>{article.getContent()}</p>
+        <h1>{title}</h1>
+        <p>{getContent()}</p>
         <Image
-          src={article.image}
-          alt={`${article.title} Image`}
+          src={thumbnail}
+          alt={`${title} Thumbnail`}
           width={30}
           height={30}
         />
