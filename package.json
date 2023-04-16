@@ -10,6 +10,14 @@
   "author": "Ozan Ertürk",
   "license": "ISC",
   "devDependencies": {
-    "nx": "^15.9.2"
-  }
+    "@types/node": "18.15.11",
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "nx": "^15.9.2",
+    "typescript": "5.0.4"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
