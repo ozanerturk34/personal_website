@@ -4,35 +4,51 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "article"
+    "displayName": "Article",
+    "name": "article"
   },
   "options": {
+    "increments": true,
+    "timestamps": true,
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "slug": {
-      "type": "string"
+    "description": {
+      "type": "text",
+      "required": true
     },
     "content": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
-    "thumbnail": {
-      "type": "string"
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     },
-    "user": {
+    "category": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "admin::user"
-    },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::category.category",
-      "mappedBy": "articles"
+      "inversedBy": "articles"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::writer.writer",
+      "inversedBy": "articles"
     }
   }
 }
