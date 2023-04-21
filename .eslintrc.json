@@ -1,3 +1,7 @@
 {
-  "extends": "next/core-web-vitals"
+  "plugins": ["turbo"],
+  "rules": {
+    // Automatically flag env vars missing from turbo.json
+    "turbo/no-undeclared-env-vars": "error"
+  }
 }
