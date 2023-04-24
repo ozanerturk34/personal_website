@@ -5,6 +5,7 @@
       "cache": false,
       "persistent": true
     },
+    "prebuild": {},
     "build": {
       "dependsOn": ["^build", "prebuild"]
     },
@@ -12,6 +13,10 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
+    "grpc#build:proto": {
+      "dependsOn": ["addPermissionProtogen"]
+    },
+    "grpc#addPermissionProtogen": {},
     "test": {
       "dependsOn": ["build"]
     },
