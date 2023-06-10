@@ -6,6 +6,7 @@ import type { Article, ArticleList } from "@models/Article";
 
 // TODO: Remove this
 import MockArticlesAPI from "../../__mock__/MockArticlesAPI";
+import useFetcher from "@hooks/useFetcher";
 const mockArticlesAPI = MockArticlesAPI.getInstance();
 
 interface BlogProps {
@@ -14,6 +15,8 @@ interface BlogProps {
 }
 
 const Blog = ({ featuredArticle, articleLists }: BlogProps) => {
+  const { data, error } = useFetcher("api/hello");
+  console.log("data", data);
   return (
     <div>
       <h1>Featured Article</h1>

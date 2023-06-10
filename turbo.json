@@ -13,13 +13,6 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
-    "grpc#build:proto": {
-      "dependsOn": ["addPermissionProtogen"]
-    },
-    "grpc#addPermissionProtogen": {},
-    "test": {
-      "dependsOn": ["build"]
-    },
     "next#test": {
       "dependsOn": ["build"],
       "outputs": [".next/**", "!.next/cache/**"],

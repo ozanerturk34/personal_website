@@ -1,12 +1,15 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "module": "esnext",
     "paths": {
       "@public/*": ["./public/*"],
       "@models/*": ["./src/models/*"],
       "@components/*": ["./src/components/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@hooks/*": ["./src/hooks/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "server-preload.js"]
 }
