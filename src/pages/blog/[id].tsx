@@ -17,10 +17,6 @@ interface ArticleParams extends ParsedUrlQuery {
   id: string;
 }
 
-const Editor = dynamic(() => import("@components/Editor/editor"), {
-  ssr: false,
-});
-
 const ArticlePage = ({ article: simpleArticle }: ArticleProps) => {
   const { getContent, thumbnail, title } =
     ArticleBuilder.mapToArticleBuilder(simpleArticle);
@@ -35,7 +31,6 @@ const ArticlePage = ({ article: simpleArticle }: ArticleProps) => {
           width={30}
           height={30}
         />
-        <div>{<Editor />}</div>
       </div>
     </>
   );
