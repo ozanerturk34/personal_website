@@ -18,5 +18,10 @@
     "eslint-config-next": "13.3.0",
     "turbo": "^1.9.3",
     "typescript": "5.0.4"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@ckeditor/ckeditor5-react@6.0.0": "patches/@ckeditor__ckeditor5-react@6.0.0.patch"
+    }
   }
 }

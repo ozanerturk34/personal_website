@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { GetStaticPaths, GetStaticProps } from "next";
+import dynamic from "next/dynamic";
 import type { ParsedUrlQuery } from "querystring";
 
 import { ArticleBuilder, type Article } from "@models/Article";
@@ -16,6 +17,10 @@ interface ArticleParams extends ParsedUrlQuery {
   id: string;
 }
 
+const Editor = dynamic(() => import("@components/Editor/editor"), {
+  ssr: false,
+});
+
 const ArticlePage = ({ article: simpleArticle }: ArticleProps) => {
   const { getContent, thumbnail, title } =
     ArticleBuilder.mapToArticleBuilder(simpleArticle);
@@ -30,6 +35,7 @@ const ArticlePage = ({ article: simpleArticle }: ArticleProps) => {
           width={30}
           height={30}
         />
+        <div>{<Editor />}</div>
       </div>
     </>
   );
