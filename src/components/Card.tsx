@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import type { Article } from "@models/Article";
+import type { Post } from "@models/Post";
 
-interface ArticleCardProps {
-  article: Article;
+interface CardProps {
+  post: Post;
 }
 
-const ArticleCard = ({ article }: ArticleCardProps) => {
-  const { content, id, thumbnail, title } = article;
+const Card = ({ post }: CardProps) => {
+  const { content, id, thumbnail, title } = post;
   return (
     <Link href={`/blog/${id}`}>
       <div>
@@ -25,4 +25,4 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
   );
 };
 
-export default ArticleCard;
+export default Card;
