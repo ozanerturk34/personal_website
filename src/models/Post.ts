@@ -1,6 +1,19 @@
 export interface Post {
-  id: number;
+  slug: string;
   title: string;
-  thumbnail: string;
-  content: string;
+  createdAt: string;
+}
+
+interface RawPostSlug {
+  _type: "slug";
+  current: string;
+}
+export interface RawPost {
+  _type: "blog";
+  _rev: string;
+  _id: string;
+  _updatedAt: string;
+  _createdAt: string;
+  title: string;
+  slug: RawPostSlug;
 }
