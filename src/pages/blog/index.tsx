@@ -25,14 +25,14 @@ const Blog = ({ posts }: BlogProps) => {
 
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
   try {
-    const posts = (await getAllPosts()) as Post[];
-    console.log(posts);
+    const posts: Post[] = await getAllPosts();
     return {
       props: {
         posts: posts,
       },
     };
   } catch (error) {
+    console.log("TODO error logging");
     return { notFound: true };
   }
 };

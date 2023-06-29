@@ -1,18 +1,17 @@
 import client from "@lib/sanity";
 
-import { ApiPost, apiPosts } from "@utils/apiTypes";
-
-const postAuthorField = `
+const postAuthorFields = `
   name, 
   'avatar': avatar.asset->url 
 `;
-const postField = `
+
+const postFields = `
   title,
   'slug': slug.current,
   date,
   'thumbnail': thumbnail.asset->url,
-  'author': author->{ ${postAuthorField} }
+  'author': author->{ ${postAuthorFields} }
 `;
 
-export const getAllPosts: () => Promise<ApiPost[]> = async () =>
-  apiPosts(await client.fetch(`*[_type == 'blog']{ ${postField} }`));
+export const getAllPosts = () =>
+  client.fetch(`*[_type == 'blog']{ ${postFields} }`);
