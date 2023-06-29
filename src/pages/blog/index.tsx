@@ -24,13 +24,17 @@ const Blog = ({ posts }: BlogProps) => {
 };
 
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
-  const posts: Post[] = await getAllPosts();
-  console.log(posts);
-  return {
-    props: {
-      posts: posts,
-    },
-  };
+  try {
+    const posts = (await getAllPosts()) as Post[];
+    console.log(posts);
+    return {
+      props: {
+        posts: posts,
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
 };
 
 export default Blog;
