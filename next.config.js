@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // TODO: Remove kasandbox domain
-  images: { domains: ["www.kasandbox.org"] },
+  images: { domains: ["cdn.sanity.io"] },
 };
 
 module.exports = nextConfig;

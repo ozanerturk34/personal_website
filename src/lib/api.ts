@@ -3,7 +3,8 @@ import client from "@lib/sanity";
 const postsField = `
     title,
     'slug': slug.current,
-    'createdAt': _createdAt
+    date,
+    'thumbnail': thumbnail.asset->url
 `;
 
 export const getAllPosts = () =>

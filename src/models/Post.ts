@@ -1,5 +1,6 @@
 export interface Post {
   slug: string;
   title: string;
-  createdAt: string;
+  date: string;
+  thumbnail: string;
 }

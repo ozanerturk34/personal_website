@@ -8,19 +8,19 @@ interface CardProps {
 }
 
 const Card = ({ post }: CardProps) => {
-  const { slug, title, createdAt } = post;
+  const { slug, title, date, thumbnail } = post;
   return (
     <Link href={`/blog/${slug}`}>
       <div>
         <h1>{title}</h1>
-        <p>{createdAt}</p>
+        <p>{date}</p>
         <p>{slug}</p>
-        {/* <Image
+        <Image
           src={thumbnail}
           alt={`${title} Thumbnail`}
-          width={30}
-          height={30}
-        /> */}
+          width={300}
+          height={300}
+        />
       </div>
     </Link>
   );
