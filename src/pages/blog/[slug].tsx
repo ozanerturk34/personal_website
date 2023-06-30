@@ -44,6 +44,7 @@ const PostPage = ({
 // This function gets called at build time
 export const getStaticPaths: GetStaticPaths<PostParams> = async () => {
   const posts: Post[] = await getAllPostSlugs();
+  // TODO add logging during build
   const paths = posts.map((post) => ({
     params: {
       slug: post.slug,
