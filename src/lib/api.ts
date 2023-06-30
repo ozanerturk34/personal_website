@@ -13,5 +13,22 @@ const postFields = `
   'author': author->{ ${postAuthorFields} }
 `;
 
+const onlySlugField = `
+  'slug': slug.current
+`;
+
 export const getAllPosts = () =>
   client.fetch(`*[_type == 'blog']{ ${postFields} }`);
+
+export const getAllPostSlugs = () =>
+  client.fetch(`*[_type == 'blog'] { ${onlySlugField} }`);
+
+export const getPostBySlug = async (slug: string) =>
+  (
+    await client.fetch(
+      `*[_type == 'blog' && slug.current == $slug]{ ${postFields} }`,
+      {
+        slug,
+      }
+    )
+  )[0];

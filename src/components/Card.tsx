@@ -7,14 +7,15 @@ interface CardProps {
   post: Post;
 }
 
-const Card = ({ post }: CardProps) => {
-  const {
+const Card = ({
+  post: {
     slug,
     title,
     date,
     thumbnail,
     author: { name, avatar },
-  } = post;
+  },
+}: CardProps) => {
   return (
     <Link href={`/blog/${slug}`}>
       <div>
