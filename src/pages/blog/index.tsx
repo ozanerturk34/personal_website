@@ -2,10 +2,11 @@ import type { GetStaticProps } from "next";
 
 import { getAllPosts } from "@lib/api";
 
-import Card from "@components/Card";
+import PostCard from "@components/PostCard";
 import PageLayout from "@components/PageLayout";
 
 import type { Post } from "@models/Post";
+import { Col, Row } from "react-bootstrap";
 
 interface BlogProps {
   posts: Post[];
@@ -15,9 +16,13 @@ const Blog = ({ posts }: BlogProps) => {
   return (
     <PageLayout>
       <div>
-        {posts.map((post) => (
-          <Card key={post.slug} post={post} />
-        ))}
+        <Row>
+          {posts.map((post) => (
+            <Col key={post.slug}>
+              <PostCard post={post} />
+            </Col>
+          ))}
+        </Row>
       </div>
     </PageLayout>
   );
