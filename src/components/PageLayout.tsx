@@ -1,5 +1,6 @@
 import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
+import Header from "@components/Header";
 
 interface PageLayoutProps {
   children: JSX.Element | JSX.Element[];
@@ -7,11 +8,14 @@ interface PageLayoutProps {
 
 const PageLayout = ({ children }: PageLayoutProps) => {
   return (
-    <main>
-      <Navbar />
-      <div className="page-wrapper">{children}</div>
-      <Footer />
-    </main>
+    <>
+      <Header />
+      <main>
+        <Navbar />
+        <div className="page-wrapper">{children}</div>
+        <Footer />
+      </main>
+    </>
   );
 };
 
