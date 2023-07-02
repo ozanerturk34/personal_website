@@ -1,15 +1,15 @@
 import type { GetStaticProps } from "next";
 
-import { getAllPosts } from "@lib/api";
+import { getAllPostsForCard } from "@lib/api";
 
 import PostCard from "@components/PostCard";
 import PageLayout from "@components/PageLayout";
 
-import type { Post } from "@models/Post";
+import type { PostForCard } from "@models/Blog/Post";
 import { Col, Row } from "react-bootstrap";
 
 interface BlogProps {
-  posts: Post[];
+  posts: PostForCard[];
 }
 
 const Blog = ({ posts }: BlogProps) => {
@@ -30,14 +30,14 @@ const Blog = ({ posts }: BlogProps) => {
 
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
   try {
-    const posts: Post[] = await getAllPosts();
+    const posts = await getAllPostsForCard();
     return {
       props: {
         posts: posts,
       },
     };
   } catch (error) {
-    console.log("TODO error logging");
+    console.log(error, "TODO error loggingss");
     return { notFound: true };
   }
 };

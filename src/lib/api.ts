@@ -1,32 +1,46 @@
 import client from "@lib/sanity";
+import { Post, PostForCard, PostWithOnlySlug } from "@models/Blog/Post";
+
+const imageFields = (field: string) =>
+  `'${field}': { 'alt': ${field}.alt, 'url': ${field}.asset->url }`;
 
 const postAuthorFields = `
   name, 
-  'avatar': avatar.asset->url 
+  ${imageFields("avatar")}
 `;
 
-const postFields = `
+const basePostFields = `
   title,
-  'slug': slug.current,
   date,
-  'thumbnail': thumbnail.asset->url,
   'author': author->{ ${postAuthorFields} }
+`;
+
+const postCardFields = `
+  ${basePostFields},
+  ${imageFields("thumbnail")}
+  ,
+  'slug': slug.current
+`;
+
+const postDetailFields = `
+  ${basePostFields},
+  content[]{ ..., 'asset': asset-> }
 `;
 
 const onlySlugField = `
   'slug': slug.current
 `;
 
-export const getAllPosts = () =>
-  client.fetch(`*[_type == 'blog']{ ${postFields} }`);
+export const getAllPostsForCard = () =>
+  client.fetch<PostForCard[]>(`*[_type == 'blog']{ ${postCardFields} }`);
 
 export const getAllPostSlugs = () =>
-  client.fetch(`*[_type == 'blog'] { ${onlySlugField} }`);
+  client.fetch<PostWithOnlySlug[]>(`*[_type == 'blog'] { ${onlySlugField} }`);
 
 export const getPostBySlug = async (slug: string) =>
   (
-    await client.fetch(
-      `*[_type == 'blog' && slug.current == $slug]{ ${postFields} }`,
+    await client.fetch<Post[]>(
+      `*[_type == 'blog' && slug.current == $slug]{ ${postDetailFields} }`,
       {
         slug,
       }

@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import type { Post } from "@models/Post";
+import type { PostForCard } from "@models/Blog/Post";
 import { Card } from "react-bootstrap";
 
 interface PostCardProps {
-  post: Post;
+  post: PostForCard;
 }
 
 const PostCard = ({
@@ -13,8 +13,11 @@ const PostCard = ({
     slug,
     title,
     date,
-    thumbnail,
-    author: { name, avatar },
+    thumbnail: { url: thumbnailUrl, alt: thumbnailAlt },
+    author: {
+      name,
+      avatar: { url: avatarUrl, alt: avatarAlt },
+    },
   },
 }: PostCardProps) => {
   return (
@@ -22,11 +25,11 @@ const PostCard = ({
       <Card>
         <Card.Header>
           <Image
-            src={avatar}
+            src={avatarUrl}
             className="rounded-circle mr-3"
             height={50}
             width={50}
-            alt="avatar"
+            alt={avatarAlt}
           />
           <Card.Title className="font-weight-bold mb-1">{name}</Card.Title>
           <Card.Text className="card-date">{date}</Card.Text>
@@ -36,8 +39,8 @@ const PostCard = ({
             {title.length > 40 ? title.slice(0, 40) + "..." : title}
           </Card.Title>
           <Image
-            src={thumbnail}
-            alt={`${title} Thumbnail`}
+            src={thumbnailUrl}
+            alt={thumbnailAlt}
             width={300}
             height={300}
           />
