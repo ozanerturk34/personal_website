@@ -3,12 +3,18 @@ import Image from "next/image";
 import { useNextSanityImage } from "next-sanity-image";
 import Refractor from "react-refractor";
 import ts from "refractor/lang/typescript";
+import js from "refractor/lang/javascript";
+import css from "refractor/lang/css";
+import html from "refractor/lang/markdown";
 
 import sanityClient from "@lib/sanity";
 import { type BlockImage } from "@models/Blog/Image";
 import { BlockCode } from "@models/Blog/Code";
 
 Refractor.registerLanguage(ts);
+Refractor.registerLanguage(js);
+Refractor.registerLanguage(css);
+Refractor.registerLanguage(html);
 
 interface PostContentProps {
   content: any[];
