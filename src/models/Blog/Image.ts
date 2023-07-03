@@ -1,12 +1,5 @@
-import { SanityImageObjectStub } from "@sanity/asset-utils";
+import type { SanityImageObjectStub } from "@sanity/asset-utils";
 
-export interface Avatar {
-  url: string;
-  alt: string;
-}
-
-export interface Thumbnail extends Avatar {}
-
-export interface BlockImage extends SanityImageObjectStub {
+export interface SanityImageWithAlt extends SanityImageObjectStub {
   alt: string;
 }

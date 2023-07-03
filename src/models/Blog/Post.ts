@@ -1,5 +1,5 @@
-import { Author } from "./Author";
-import { Thumbnail } from "./Image";
+import type { Author } from "./Author";
+import type { SanityImageWithAlt } from "./Image";
 
 export interface PostWithOnlySlug {
   slug: string;
@@ -13,7 +13,7 @@ export interface PostBase {
 
 export interface PostForCard extends PostWithOnlySlug, PostBase {
   slug: string;
-  thumbnail: Thumbnail;
+  thumbnail: SanityImageWithAlt;
 }
 
 export interface Post extends PostWithOnlySlug, PostBase {

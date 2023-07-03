@@ -2,11 +2,13 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
 import { Col, Row } from "react-bootstrap";
 
-import { Post } from "@models/Blog/Post";
 import { getAllPostSlugs, getPostBySlug } from "@lib/api";
+
 import PageLayout from "@components/PageLayout";
 import PostHeader from "@components/Post/PostHeader";
 import PostContent from "@components/Post/PostCotent";
+
+import type { Post } from "@models/Blog/Post";
 
 interface PostProps {
   post: Post;
@@ -16,21 +18,18 @@ interface PostParams extends ParsedUrlQuery {
   slug: string;
 }
 
-const PostPage = ({ post }: PostProps) => {
-  return (
-    <PageLayout>
-      <Row>
-        <Col md={{ span: 10, offset: 1 }}>
-          <PostHeader post={post} />
-          <hr />
-          <PostContent content={post.content} />
-        </Col>
-      </Row>
-    </PageLayout>
-  );
-};
+const PostPage = ({ post }: PostProps) => (
+  <PageLayout>
+    <Row>
+      <Col md={{ span: 10, offset: 1 }}>
+        <PostHeader post={post} />
+        <hr />
+        <PostContent content={post.content} />
+      </Col>
+    </Row>
+  </PageLayout>
+);
 
-// This function gets called at build time
 export const getStaticPaths: GetStaticPaths<PostParams> = async () => {
   const posts = await getAllPostSlugs();
   // TODO add logging during build

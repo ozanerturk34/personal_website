@@ -1,8 +1,9 @@
 import client from "@lib/sanity";
-import { Post, PostForCard, PostWithOnlySlug } from "@models/Blog/Post";
+
+import type { Post, PostForCard, PostWithOnlySlug } from "@models/Blog/Post";
 
 const imageFields = (field: string) =>
-  `'${field}': { 'alt': ${field}.alt, 'url': ${field}.asset->url }`;
+  `'${field}': { 'alt': ${field}.alt, 'asset': ${field}.asset-> }`;
 
 const postAuthorFields = `
   name, 
@@ -17,8 +18,7 @@ const basePostFields = `
 
 const postCardFields = `
   ${basePostFields},
-  ${imageFields("thumbnail")}
-  ,
+  ${imageFields("thumbnail")},
   'slug': slug.current
 `;
 

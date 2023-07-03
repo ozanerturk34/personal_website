@@ -1,6 +1,6 @@
-import { Avatar } from "./Image";
+import type { SanityImageWithAlt } from "./Image";
 
 export interface Author {
   name: string;
-  avatar: Avatar;
+  avatar: SanityImageWithAlt;
 }
