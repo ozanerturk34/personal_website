@@ -1,4 +1,5 @@
 import type { Author } from "./Author";
+import { CategoryBase } from "./Category";
 import type { SanityImageWithAlt } from "./Image";
 
 export interface PostWithOnlySlug {
@@ -9,6 +10,7 @@ export interface PostBase {
   title: string;
   date: string;
   author: Author;
+  categories: CategoryBase[];
 }
 
 export interface PostForCard extends PostWithOnlySlug, PostBase {

@@ -6,19 +6,15 @@ import { getAllPostSlugs, getPostBySlug } from "@lib/api";
 
 import PageLayout from "@components/PageLayout";
 import PostHeader from "@components/Post/PostHeader";
-import PostContent from "@components/Post/PostCotent";
+import PostContent from "@components/Post/PostContent";
 
 import type { Post } from "@models/Post";
 
-interface PostProps {
+interface PostPageProps {
   post: Post;
 }
 
-interface PostParams extends ParsedUrlQuery {
-  slug: string;
-}
-
-const PostPage = ({ post }: PostProps) => (
+const PostPage = ({ post }: PostPageProps) => (
   <PageLayout>
     <Row>
       <Col md={{ span: 10, offset: 1 }}>
@@ -30,9 +26,12 @@ const PostPage = ({ post }: PostProps) => (
   </PageLayout>
 );
 
-export const getStaticPaths: GetStaticPaths<PostParams> = async () => {
+interface PostPageParams extends ParsedUrlQuery {
+  slug: string;
+}
+
+export const getStaticPaths: GetStaticPaths<PostPageParams> = async () => {
   const posts = await getAllPostSlugs();
-  // TODO add logging during build
   const paths = posts.map((post) => ({
     params: {
       slug: post.slug,
@@ -41,9 +40,10 @@ export const getStaticPaths: GetStaticPaths<PostParams> = async () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps<PostProps, PostParams> = async ({
-  params,
-}) => {
+export const getStaticProps: GetStaticProps<
+  PostPageProps,
+  PostPageParams
+> = async ({ params }) => {
   if (!params?.slug) {
     // TODO: Add error handling
     throw new Error("WTF?");

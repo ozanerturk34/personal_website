@@ -1,5 +1,6 @@
 import client from "@lib/sanity";
 
+import type { CategoryLean } from "@models/Category";
 import type { Post, PostForCard, PostWithOnlySlug } from "@models/Post";
 
 const imageFields = (field: string) =>
@@ -10,10 +11,21 @@ const postAuthorFields = `
   ${imageFields("avatar")}
 `;
 
+const categoryBaseFields = `
+  title,
+  'slug': slug.current
+`;
+
+const categoryLeanFields = `
+  ${categoryBaseFields},
+  description
+`;
+
 const basePostFields = `
   title,
   date,
-  'author': author->{ ${postAuthorFields} }
+  'author': author->{ ${postAuthorFields} },
+  categories[]->{ ${categoryBaseFields} }
 `;
 
 const postCardFields = `
@@ -46,3 +58,26 @@ export const getPostBySlug = async (slug: string) =>
       }
     )
   )[0];
+
+export const getAllCategorySlugs = () =>
+  client.fetch<PostWithOnlySlug[]>(
+    `*[_type == 'category'] { ${onlySlugField} }`
+  );
+
+export const getCategoryBySlug = async (slug: string) =>
+  (
+    await client.fetch<CategoryLean[]>(
+      `*[_type == 'category' && slug.current == $slug]{ ${categoryLeanFields} }`,
+      {
+        slug,
+      }
+    )
+  )[0];
+
+export const getPostsForCategory = (slug: string) =>
+  client.fetch<PostForCard[]>(
+    `*[_type == 'post' && $slug in categories[]->slug.current ]{ ${postCardFields} }`,
+    {
+      slug,
+    }
+  );

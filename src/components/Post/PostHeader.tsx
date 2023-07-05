@@ -1,3 +1,4 @@
+import CategoryLabel from "@components/Category/CategoryLabel";
 import SanityImage from "@components/SanityImage";
 
 import type { Post } from "@models/Post";
@@ -10,6 +11,7 @@ const PostHeader = ({
     title,
     date,
     author: { name, avatar },
+    categories,
   },
 }: PostHeaderProps) => {
   return (
@@ -27,6 +29,11 @@ const PostHeader = ({
       <h1 className="font-weight-bold blog-detail-header-title mb-0">
         {title}
       </h1>
+      <div>
+        {categories.map((category) => (
+          <CategoryLabel key={category.slug} category={category} />
+        ))}
+      </div>
     </div>
   );
 };

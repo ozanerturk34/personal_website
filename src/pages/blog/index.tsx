@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 
 import { getAllPostsForCard } from "@lib/api";
 
-import PostCard from "@components/PostCard";
+import PostCard from "@components/Post/PostCard";
 import PageLayout from "@components/PageLayout";
 
 import type { PostForCard } from "@models/Post";
