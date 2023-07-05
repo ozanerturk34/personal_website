@@ -8,7 +8,7 @@ import PageLayout from "@components/PageLayout";
 import PostHeader from "@components/Post/PostHeader";
 import PostContent from "@components/Post/PostCotent";
 
-import type { Post } from "@models/Blog/Post";
+import type { Post } from "@models/Post";
 
 interface PostProps {
   post: Post;

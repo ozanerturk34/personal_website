@@ -1,6 +1,6 @@
 import SanityImage from "@components/SanityImage";
 
-import type { Post } from "@models/Blog/Post";
+import type { Post } from "@models/Post";
 
 interface PostHeaderProps {
   post: Post;

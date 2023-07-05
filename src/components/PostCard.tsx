@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 
 import SanityImage from "@components/SanityImage";
 
-import type { PostForCard } from "@models/Blog/Post";
+import type { PostForCard } from "@models/Post";
 
 interface PostCardProps {
   post: PostForCard;
@@ -34,7 +34,7 @@ const PostCard = ({
         <Card.Title className="card-main-title">
           {title.length > 40 ? title.slice(0, 40) + "..." : title}
         </Card.Title>
-        <SanityImage image={thumbnail} width={300} height={300} />
+        <SanityImage image={thumbnail} />
       </Card.Body>
     </Card>
   </Link>

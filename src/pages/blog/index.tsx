@@ -6,7 +6,7 @@ import { getAllPostsForCard } from "@lib/api";
 import PostCard from "@components/PostCard";
 import PageLayout from "@components/PageLayout";
 
-import type { PostForCard } from "@models/Blog/Post";
+import type { PostForCard } from "@models/Post";
 
 interface BlogProps {
   posts: PostForCard[];

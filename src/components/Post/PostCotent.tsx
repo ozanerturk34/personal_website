@@ -7,8 +7,8 @@ import html from "refractor/lang/markdown";
 
 import SanityImage from "@components/SanityImage";
 
-import type { SanityImageWithAlt } from "@models/Blog/Image";
-import type { BlockCode } from "@models/Blog/Code";
+import type { SanityImageWithAlt } from "@models/Image";
+import type { BlockCode } from "@models/Code";
 
 Refractor.registerLanguage(ts);
 Refractor.registerLanguage(js);

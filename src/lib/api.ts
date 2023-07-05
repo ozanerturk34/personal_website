@@ -1,6 +1,6 @@
 import client from "@lib/sanity";
 
-import type { Post, PostForCard, PostWithOnlySlug } from "@models/Blog/Post";
+import type { Post, PostForCard, PostWithOnlySlug } from "@models/Post";
 
 const imageFields = (field: string) =>
   `'${field}': { 'alt': ${field}.alt, 'asset': ${field}.asset-> }`;
@@ -32,15 +32,15 @@ const onlySlugField = `
 `;
 
 export const getAllPostsForCard = () =>
-  client.fetch<PostForCard[]>(`*[_type == 'blog']{ ${postCardFields} }`);
+  client.fetch<PostForCard[]>(`*[_type == 'post']{ ${postCardFields} }`);
 
 export const getAllPostSlugs = () =>
-  client.fetch<PostWithOnlySlug[]>(`*[_type == 'blog'] { ${onlySlugField} }`);
+  client.fetch<PostWithOnlySlug[]>(`*[_type == 'post'] { ${onlySlugField} }`);
 
 export const getPostBySlug = async (slug: string) =>
   (
     await client.fetch<Post[]>(
-      `*[_type == 'blog' && slug.current == $slug]{ ${postDetailFields} }`,
+      `*[_type == 'post' && slug.current == $slug]{ ${postDetailFields} }`,
       {
         slug,
       }
