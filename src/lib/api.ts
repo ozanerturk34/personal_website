@@ -90,7 +90,7 @@ export const getPostsForCategory = (slug: string) =>
   );
 
 // TODO add limit
-export const getAllCategoriesWithPosts = (limit: number) =>
+export const getAllCategoriesWithPosts = () =>
   client.fetch<CategoryWithPosts[]>(
     `*[_type == 'category']{ ${categoryWithPostsFields} }`
   );

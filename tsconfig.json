@@ -23,7 +23,9 @@
       "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@lib/*": ["./src/lib/*"]
+      "@lib/*": ["./src/lib/*"],
+      "@middleware/*": ["./src/middleware/*"],
+      "@constants/*": ["./src/constants/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "server-preload.js"],

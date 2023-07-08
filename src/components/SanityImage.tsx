@@ -1,7 +1,7 @@
 import { useNextSanityImage } from "next-sanity-image";
 import Image, { type ImageProps } from "next/image";
 
-import sanityClient from "@lib/sanity";
+import { readClient } from "@lib/sanity";
 
 import type { SanityImageWithAlt } from "@models/Image";
 
@@ -10,7 +10,7 @@ interface SanityImageProps extends Omit<ImageProps, "src" | "alt"> {
 }
 
 const SanityImage = ({ image, ...props }: SanityImageProps) => {
-  const imageProps = useNextSanityImage(sanityClient, image);
+  const imageProps = useNextSanityImage(readClient, image);
 
   return <Image {...imageProps} {...props} alt={image.alt} />;
 };

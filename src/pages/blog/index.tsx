@@ -43,7 +43,7 @@ const Blog = ({ posts, categories }: BlogProps) => (
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
   try {
     const posts = await getAllPostsForCard();
-    const categories = await getAllCategoriesWithPosts(1);
+    const categories = await getAllCategoriesWithPosts();
     return {
       props: {
         posts,

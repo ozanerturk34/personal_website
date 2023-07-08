@@ -10,7 +10,7 @@ interface AuthorCardProps {
 const AuthorCard = ({
   author: { name, avatar, slug, about },
 }: AuthorCardProps) => (
-  <Link className="lead mb-0" href={slug}>
+  <Link className="lead mb-0" href={`/blog/author/${slug}`}>
     <SanityImage
       image={avatar}
       className="rounded-circle mr-3"

@@ -1,4 +1,4 @@
-import { FormEventHandler, useCallback, useState } from "react";
+import { type FormEventHandler, useCallback, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 
 const Subscriber = () => {
@@ -12,11 +12,12 @@ const Subscriber = () => {
     },
     [name, email]
   );
+
   return (
     <Form onSubmit={submitForm}>
       <Form.Text>Sign up to get recent news</Form.Text>
       <Form.Label htmlFor="name" visuallyHidden>
-        YOUR NAME*
+        Your Name
       </Form.Label>
       <InputGroup className="mb-3">
         <InputGroup.Text id="name">YOUR NAME*</InputGroup.Text>
@@ -31,7 +32,7 @@ const Subscriber = () => {
         />
       </InputGroup>
       <Form.Label htmlFor="email" visuallyHidden>
-        YOUR EMAIL*
+        Your Email
       </Form.Label>
       <InputGroup className="mb-3">
         <InputGroup.Text id="email">YOUR EMAIL*</InputGroup.Text>
