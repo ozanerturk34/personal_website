@@ -1,3 +1,4 @@
+import { PostForCard } from "./Post";
 import type { SlugObject } from "./shared";
 
 export interface CategoryBase extends SlugObject {
@@ -6,4 +7,8 @@ export interface CategoryBase extends SlugObject {
 
 export interface Category extends CategoryBase {
   description: string;
+}
+
+export interface CategoryWithPosts extends Category {
+  posts: PostForCard[];
 }

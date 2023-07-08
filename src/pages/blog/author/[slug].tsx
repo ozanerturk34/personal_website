@@ -21,7 +21,6 @@ interface AuthorPageProps {
 }
 
 const AuthorPage = ({ author, posts }: AuthorPageProps) => {
-  console.log("posts", posts);
   return (
     <PageLayout>
       <Row>
@@ -63,12 +62,13 @@ export const getStaticProps: GetStaticProps<
     // TODO: Add error handling
     throw new Error("WTF?");
   }
-  console.log(author);
+
   const posts: PostForCard[] = await getPostsForAuthor(params.slug);
   if (!posts) {
     // TODO: Add error handling
     throw new Error("WTF?");
   }
+
   return {
     props: {
       author,

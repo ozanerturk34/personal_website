@@ -13,7 +13,7 @@ const PostCard = ({
   post: {
     slug,
     title,
-    date,
+    publishedAt,
     thumbnail,
     author: { name, avatar },
   },
@@ -28,7 +28,7 @@ const PostCard = ({
           width={50}
         />
         <Card.Title className="font-weight-bold mb-1">{name}</Card.Title>
-        <Card.Text className="card-date">{date}</Card.Text>
+        <Card.Text className="card-date">{publishedAt}</Card.Text>
       </Card.Header>
       <Card.Body>
         <Card.Title className="card-main-title">

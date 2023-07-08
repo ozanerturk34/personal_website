@@ -1,6 +1,6 @@
 import client from "@lib/sanity";
 
-import type { Category } from "@models/Category";
+import type { Category, CategoryWithPosts } from "@models/Category";
 import type { Post, PostForCard } from "@models/Post";
 import type { SlugObject } from "@models/shared";
 import type { Author } from "@models/Author";
@@ -36,6 +36,11 @@ const postCardFields = `
   ${basePostFields},
   ${imageFields("thumbnail")},
   'slug': slug.current
+`;
+
+const categoryWithPostsFields = `
+  ${categoryBaseFields},
+  'posts': *[_type=='post' && references(^._id)] { ${postCardFields} }
 `;
 
 const postDetailFields = `
@@ -82,6 +87,12 @@ export const getPostsForCategory = (slug: string) =>
     {
       slug,
     }
+  );
+
+// TODO add limit
+export const getAllCategoriesWithPosts = (limit: number) =>
+  client.fetch<CategoryWithPosts[]>(
+    `*[_type == 'category']{ ${categoryWithPostsFields} }`
   );
 
 export const getAllAuthorSlugs = () =>

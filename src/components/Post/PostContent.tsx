@@ -57,7 +57,7 @@ const PostContent = ({ content }: PostContentProps) => (
     value={content}
     components={components}
     onMissingComponent={(message, options) => {
-      console.log(message, {
+      console.error(message, {
         nodeType: options.nodeType,
         type: options.type,
       });

@@ -58,8 +58,6 @@ export const getStaticProps: GetStaticProps<
     throw new Error("WTF?");
   }
 
-  console.log(post);
-
   return {
     props: {
       post,
