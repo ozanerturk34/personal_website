@@ -1,14 +1,18 @@
 import client from "@lib/sanity";
 
-import type { CategoryLean } from "@models/Category";
-import type { Post, PostForCard, PostWithOnlySlug } from "@models/Post";
+import type { Category } from "@models/Category";
+import type { Post, PostForCard } from "@models/Post";
+import type { SlugObject } from "@models/shared";
+import type { Author } from "@models/Author";
 
 const imageFields = (field: string) =>
   `'${field}': { 'alt': ${field}.alt, 'asset': ${field}.asset-> }`;
 
-const postAuthorFields = `
+const authorFields = `
   name, 
-  ${imageFields("avatar")}
+  ${imageFields("avatar")},
+  'slug': slug.current,
+  about
 `;
 
 const categoryBaseFields = `
@@ -16,15 +20,15 @@ const categoryBaseFields = `
   'slug': slug.current
 `;
 
-const categoryLeanFields = `
+const categoryFields = `
   ${categoryBaseFields},
   description
 `;
 
 const basePostFields = `
   title,
-  date,
-  'author': author->{ ${postAuthorFields} },
+  publishedAt,
+  'author': author->{ ${authorFields} },
   categories[]->{ ${categoryBaseFields} }
 `;
 
@@ -47,7 +51,7 @@ export const getAllPostsForCard = () =>
   client.fetch<PostForCard[]>(`*[_type == 'post']{ ${postCardFields} }`);
 
 export const getAllPostSlugs = () =>
-  client.fetch<PostWithOnlySlug[]>(`*[_type == 'post'] { ${onlySlugField} }`);
+  client.fetch<SlugObject[]>(`*[_type == 'post'] { ${onlySlugField} }`);
 
 export const getPostBySlug = async (slug: string) =>
   (
@@ -60,14 +64,12 @@ export const getPostBySlug = async (slug: string) =>
   )[0];
 
 export const getAllCategorySlugs = () =>
-  client.fetch<PostWithOnlySlug[]>(
-    `*[_type == 'category'] { ${onlySlugField} }`
-  );
+  client.fetch<SlugObject[]>(`*[_type == 'category'] { ${onlySlugField} }`);
 
 export const getCategoryBySlug = async (slug: string) =>
   (
-    await client.fetch<CategoryLean[]>(
-      `*[_type == 'category' && slug.current == $slug]{ ${categoryLeanFields} }`,
+    await client.fetch<Category[]>(
+      `*[_type == 'category' && slug.current == $slug]{ ${categoryFields} }`,
       {
         slug,
       }
@@ -76,8 +78,25 @@ export const getCategoryBySlug = async (slug: string) =>
 
 export const getPostsForCategory = (slug: string) =>
   client.fetch<PostForCard[]>(
-    `*[_type == 'post' && $slug in categories[]->slug.current ]{ ${postCardFields} }`,
+    `*[_type == 'post' && $slug in categories[]->slug.current]{ ${postCardFields} }`,
     {
       slug,
     }
+  );
+
+export const getAllAuthorSlugs = () =>
+  client.fetch<SlugObject[]>(`*[_type == 'author'] { ${onlySlugField}} `);
+
+export const getAuthorBySlug = async (slug: string) =>
+  (
+    await client.fetch<Author[]>(
+      `*[_type == 'author' && slug.current == $slug] { ${authorFields} }`,
+      { slug }
+    )
+  )[0];
+
+export const getPostsForAuthor = (slug: string) =>
+  client.fetch<PostForCard[]>(
+    `*[_type == 'post' && author->slug.current == $slug] { ${postCardFields} }`,
+    { slug }
   );

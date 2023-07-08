@@ -1,7 +1,7 @@
-import type { CategoryLean } from "@models/Category";
+import type { Category } from "@models/Category";
 
 interface CategoryHeaderProps {
-  category: CategoryLean;
+  category: Category;
 }
 
 const CategoryHeader = ({

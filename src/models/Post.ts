@@ -1,23 +1,20 @@
 import type { Author } from "./Author";
-import { CategoryBase } from "./Category";
+import type { CategoryBase } from "./Category";
 import type { SanityImageWithAlt } from "./Image";
-
-export interface PostWithOnlySlug {
-  slug: string;
-}
+import type { SlugObject } from "./shared";
 
 export interface PostBase {
   title: string;
-  date: string;
+  publishedAt: string;
   author: Author;
   categories: CategoryBase[];
 }
 
-export interface PostForCard extends PostWithOnlySlug, PostBase {
+export interface PostForCard extends SlugObject, PostBase {
   slug: string;
   thumbnail: SanityImageWithAlt;
 }
 
-export interface Post extends PostWithOnlySlug, PostBase {
+export interface Post extends SlugObject, PostBase {
   content: any[];
 }

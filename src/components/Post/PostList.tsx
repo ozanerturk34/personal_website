@@ -8,9 +8,11 @@ interface PostListProps {
 const PostList = ({ posts }: PostListProps) => {
   return (
     <div>
-      {posts.map((post) => (
-        <PostCard key={post.slug} post={post} />
-      ))}
+      {posts.length > 0 ? (
+        posts.map((post) => <PostCard key={post.slug} post={post} />)
+      ) : (
+        <h1>No Posts</h1>
+      )}
     </div>
   );
 };

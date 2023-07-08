@@ -7,6 +7,7 @@ import { getAllPostSlugs, getPostBySlug } from "@lib/api";
 import PageLayout from "@components/PageLayout";
 import PostHeader from "@components/Post/PostHeader";
 import PostContent from "@components/Post/PostContent";
+import PostFooter from "@components/Post/PostFooter";
 
 import type { Post } from "@models/Post";
 
@@ -21,6 +22,8 @@ const PostPage = ({ post }: PostPageProps) => (
         <PostHeader post={post} />
         <hr />
         <PostContent content={post.content} />
+        <hr />
+        <PostFooter post={post} />
       </Col>
     </Row>
   </PageLayout>
@@ -54,6 +57,8 @@ export const getStaticProps: GetStaticProps<
     // TODO: Add error handling
     throw new Error("WTF?");
   }
+
+  console.log(post);
 
   return {
     props: {

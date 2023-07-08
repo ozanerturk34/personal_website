@@ -1,4 +1,4 @@
-import { CategoryBase } from "@models/Category";
+import type { CategoryBase } from "@models/Category";
 import Link from "next/link";
 
 interface CategoryLabelProps {
@@ -8,7 +8,7 @@ interface CategoryLabelProps {
 const CategoryLabel = ({ category: { slug, title } }: CategoryLabelProps) => {
   return (
     <Link href={`/blog/topics/${slug}`}>
-      <h1>{title}</h1>
+      <p>{title}</p>
     </Link>
   );
 };

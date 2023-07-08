@@ -1,17 +1,9 @@
-import { PostForCard } from "./Post";
+import type { SlugObject } from "./shared";
 
-export interface CategoryWithOnlySlug {
-  slug: string;
-}
-
-export interface CategoryBase extends CategoryWithOnlySlug {
+export interface CategoryBase extends SlugObject {
   title: string;
 }
 
-export interface CategoryLean extends CategoryBase {
+export interface Category extends CategoryBase {
   description: string;
-}
-
-export interface Category extends CategoryLean {
-  posts: PostForCard[];
 }
