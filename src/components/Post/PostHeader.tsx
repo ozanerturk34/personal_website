@@ -1,5 +1,5 @@
 import AuthorLabel from "@components/Author/AuthorLabel";
-import CategoryLabel from "@components/Category/CategoryLabel";
+import CategoriesLabel from "@components/Category/CategoriesLabel";
 
 import type { Post } from "@models/Post";
 
@@ -21,11 +21,7 @@ const PostHeader = ({
           by <AuthorLabel author={author} />
         </p>
         <span> - </span>
-        <span>
-          {categories.map((category) => (
-            <CategoryLabel category={category} key={category.slug} />
-          ))}
-        </span>
+        <CategoriesLabel categories={categories} />
       </div>
       <div>
         <p>{publishedAt}</p>

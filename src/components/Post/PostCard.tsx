@@ -1,43 +1,37 @@
 import Link from "next/link";
-import { Card } from "react-bootstrap";
 
 import SanityImage from "@components/SanityImage";
 
 import type { PostForCard } from "@models/Post";
+import CategoriesLabel from "@components/Category/CategoriesLabel";
+import AuthorLabel from "@components/Author/AuthorLabel";
+import DateLabel from "@components/DateLabel";
 
 interface PostCardProps {
   post: PostForCard;
 }
 
 const PostCard = ({
-  post: {
-    slug,
-    title,
-    publishedAt,
-    thumbnail,
-    author: { name, avatar },
-  },
+  post: { slug, title, publishedAt, thumbnail, author, categories },
 }: PostCardProps) => (
-  <Link href={`/blog/${slug}`}>
-    <Card>
-      <Card.Header>
-        <SanityImage
-          image={avatar}
-          className="rounded-circle mr-3"
-          height={50}
-          width={50}
-        />
-        <Card.Title className="font-weight-bold mb-1">{name}</Card.Title>
-        <Card.Text className="card-date">{publishedAt}</Card.Text>
-      </Card.Header>
-      <Card.Body>
-        <Card.Title className="card-main-title">
-          {title.length > 40 ? title.slice(0, 40) + "..." : title}
-        </Card.Title>
+  <div className="p-3">
+    <div>
+      <Link href={`/blog/${slug}`}>
         <SanityImage image={thumbnail} />
-      </Card.Body>
-    </Card>
-  </Link>
+      </Link>
+      <div>
+        <CategoriesLabel categories={categories} />
+      </div>
+      <Link href={`/blog/${slug}`}>
+        <h2 className="card-main-title">
+          {title.length > 40 ? title.slice(0, 40) + "..." : title}
+        </h2>
+      </Link>
+      <div>
+        by <AuthorLabel author={author} /> - <DateLabel date={publishedAt} />
+      </div>
+    </div>
+  </div>
 );
 
 export default PostCard;

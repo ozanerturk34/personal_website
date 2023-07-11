@@ -1,4 +1,4 @@
-import client from "@lib/sanity";
+import { readClient } from "@lib/sanity";
 
 import type { Category, CategoryWithPosts } from "@models/Category";
 import type { Post, PostForCard } from "@models/Post";
@@ -53,14 +53,14 @@ const onlySlugField = `
 `;
 
 export const getAllPostsForCard = () =>
-  client.fetch<PostForCard[]>(`*[_type == 'post']{ ${postCardFields} }`);
+  readClient.fetch<PostForCard[]>(`*[_type == 'post']{ ${postCardFields} }`);
 
 export const getAllPostSlugs = () =>
-  client.fetch<SlugObject[]>(`*[_type == 'post'] { ${onlySlugField} }`);
+  readClient.fetch<SlugObject[]>(`*[_type == 'post'] { ${onlySlugField} }`);
 
 export const getPostBySlug = async (slug: string) =>
   (
-    await client.fetch<Post[]>(
+    await readClient.fetch<Post[]>(
       `*[_type == 'post' && slug.current == $slug]{ ${postDetailFields} }`,
       {
         slug,
@@ -69,11 +69,11 @@ export const getPostBySlug = async (slug: string) =>
   )[0];
 
 export const getAllCategorySlugs = () =>
-  client.fetch<SlugObject[]>(`*[_type == 'category'] { ${onlySlugField} }`);
+  readClient.fetch<SlugObject[]>(`*[_type == 'category'] { ${onlySlugField} }`);
 
 export const getCategoryBySlug = async (slug: string) =>
   (
-    await client.fetch<Category[]>(
+    await readClient.fetch<Category[]>(
       `*[_type == 'category' && slug.current == $slug]{ ${categoryFields} }`,
       {
         slug,
@@ -82,7 +82,7 @@ export const getCategoryBySlug = async (slug: string) =>
   )[0];
 
 export const getPostsForCategory = (slug: string) =>
-  client.fetch<PostForCard[]>(
+  readClient.fetch<PostForCard[]>(
     `*[_type == 'post' && $slug in categories[]->slug.current]{ ${postCardFields} }`,
     {
       slug,
@@ -91,23 +91,23 @@ export const getPostsForCategory = (slug: string) =>
 
 // TODO add limit
 export const getAllCategoriesWithPosts = () =>
-  client.fetch<CategoryWithPosts[]>(
+  readClient.fetch<CategoryWithPosts[]>(
     `*[_type == 'category']{ ${categoryWithPostsFields} }`
   );
 
 export const getAllAuthorSlugs = () =>
-  client.fetch<SlugObject[]>(`*[_type == 'author'] { ${onlySlugField}} `);
+  readClient.fetch<SlugObject[]>(`*[_type == 'author'] { ${onlySlugField}} `);
 
 export const getAuthorBySlug = async (slug: string) =>
   (
-    await client.fetch<Author[]>(
+    await readClient.fetch<Author[]>(
       `*[_type == 'author' && slug.current == $slug] { ${authorFields} }`,
       { slug }
     )
   )[0];
 
 export const getPostsForAuthor = (slug: string) =>
-  client.fetch<PostForCard[]>(
+  readClient.fetch<PostForCard[]>(
     `*[_type == 'post' && author->slug.current == $slug] { ${postCardFields} }`,
     { slug }
   );

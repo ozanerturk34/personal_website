@@ -8,7 +8,7 @@ interface CategoryLabelProps {
 const CategoryLabel = ({ category: { slug, title } }: CategoryLabelProps) => {
   return (
     <Link href={`/blog/topics/${slug}`}>
-      <p>{title}</p>
+      <p className="inline text-success font-weight-bold mr-2">{title}</p>
     </Link>
   );
 };
