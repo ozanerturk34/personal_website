@@ -1,56 +1,18 @@
 import { readClient } from "@lib/sanity";
 
+import {
+  authorFields,
+  categoryFields,
+  categoryWithPostsFields,
+  onlySlugField,
+  postCardFields,
+  postDetailFields,
+} from "./definitions";
+
 import type { Category, CategoryWithPosts } from "@models/Category";
 import type { Post, PostForCard } from "@models/Post";
 import type { SlugObject } from "@models/shared";
 import type { Author } from "@models/Author";
-
-const imageFields = (field: string) =>
-  `'${field}': { 'alt': ${field}.alt, 'asset': ${field}.asset-> }`;
-
-const authorFields = `
-  name, 
-  ${imageFields("avatar")},
-  'slug': slug.current,
-  about
-`;
-
-const categoryBaseFields = `
-  title,
-  'slug': slug.current
-`;
-
-const categoryFields = `
-  ${categoryBaseFields},
-  description
-`;
-
-const basePostFields = `
-  title,
-  publishedAt,
-  'author': author->{ ${authorFields} },
-  categories[]->{ ${categoryBaseFields} }
-`;
-
-const postCardFields = `
-  ${basePostFields},
-  ${imageFields("thumbnail")},
-  'slug': slug.current
-`;
-
-const categoryWithPostsFields = `
-  ${categoryBaseFields},
-  'posts': *[_type=='post' && references(^._id)] { ${postCardFields} }
-`;
-
-const postDetailFields = `
-  ${basePostFields},
-  content[]{ ..., 'asset': asset-> }
-`;
-
-const onlySlugField = `
-  'slug': slug.current
-`;
 
 export const getAllPostsForCard = () =>
   readClient.fetch<PostForCard[]>(`*[_type == 'post']{ ${postCardFields} }`);
