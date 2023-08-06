@@ -4,6 +4,7 @@ import { Alert, Button, Form } from "react-bootstrap";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 import { setup } from "@lib/csrf";
 
@@ -102,7 +103,7 @@ const Contact = () => {
   );
 
   return (
-    <PageLayout>
+    <PageLayout activeLink={"/contact"}>
       <div>
         {!isContacted ? (
           <Form onSubmit={handleSubmit(onSubmit)}>
@@ -207,4 +208,15 @@ export const getServerSideProps = setup(async () => {
   return { props: {} };
 });
 
-export default Contact;
+const ContactContainer = () => {
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+      scriptProps={{ async: true, defer: true, appendTo: "body" }}
+    >
+      <Contact />
+    </GoogleReCaptchaProvider>
+  );
+};
+
+export default ContactContainer;

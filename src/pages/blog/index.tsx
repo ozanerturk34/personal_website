@@ -17,7 +17,7 @@ interface BlogProps {
 }
 
 const Blog = ({ posts, categories }: BlogProps) => (
-  <PageLayout>
+  <PageLayout activeLink={"/blog"}>
     <Col>
       <Row>
         {posts.map((post) => (

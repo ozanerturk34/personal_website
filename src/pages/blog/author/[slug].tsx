@@ -22,7 +22,7 @@ interface AuthorPageProps {
 
 const AuthorPage = ({ author, posts }: AuthorPageProps) => {
   return (
-    <PageLayout>
+    <PageLayout activeLink={"/blog"}>
       <Row>
         <Col md={{ span: 10, offset: 1 }}>
           <AuthorCard author={author} />

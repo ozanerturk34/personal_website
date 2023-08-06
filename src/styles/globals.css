@@ -26,3 +26,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+canvas.universe {
+  background-color: red;
+}

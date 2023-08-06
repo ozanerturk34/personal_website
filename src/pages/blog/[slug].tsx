@@ -16,7 +16,7 @@ interface PostPageProps {
 }
 
 const PostPage = ({ post }: PostPageProps) => (
-  <PageLayout>
+  <PageLayout activeLink={"/blog"}>
     <Row>
       <Col md={{ span: 10, offset: 1 }}>
         <PostHeader post={post} />

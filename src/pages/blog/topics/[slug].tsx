@@ -22,7 +22,7 @@ interface CategoryPageProps {
 
 const CategoryPage = ({ category, posts }: CategoryPageProps) => {
   return (
-    <PageLayout>
+    <PageLayout activeLink={"/blog"}>
       <Row>
         <Col md={{ span: 10, offset: 1 }}>
           <CategoryHeader category={category} />
