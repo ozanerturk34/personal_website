@@ -12,7 +12,7 @@ interface ProjectsProps {
 
 const Projects = ({ projects }: ProjectsProps) => {
   return (
-    <PageLayout>
+    <PageLayout activeLink={"/project"}>
       <ul>
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
