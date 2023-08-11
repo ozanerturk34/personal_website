@@ -9,6 +9,7 @@ import type { PostForCard } from "@models/Post";
 import type { CategoryWithPosts } from "@models/Category";
 import CategoryCard from "@components/Category/CategoryCard";
 import Subscriber from "@components/Subscriber";
+import Searchbar from "@components/Searchbar";
 
 interface BlogProps {
   posts: PostForCard[];
@@ -36,7 +37,8 @@ const Blog = ({ posts, categories }: BlogProps) => {
             </div>
           ))}
         </div>
-        <div className="w-1/3">
+        <div className="w-1/3 flex flex-col py-4 px-8">
+          <Searchbar />
           <Subscriber />
         </div>
       </div>

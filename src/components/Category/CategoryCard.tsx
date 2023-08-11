@@ -1,6 +1,6 @@
 import type { CategoryWithPosts } from "@models/Category";
-import CategoryLabel from "./CategoryLabel";
 import PostList from "@components/Post/PostList";
+import CategoryHeader from "./CategoryHeader";
 
 interface CategoryCardProps {
   category: CategoryWithPosts;
@@ -8,9 +8,9 @@ interface CategoryCardProps {
 
 const CategoryCard = ({ category }: CategoryCardProps) => {
   return (
-    <div>
-      <CategoryLabel category={category} />
-      <PostList posts={category.posts} horizontal={true} />
+    <div className="mt-12">
+      <CategoryHeader category={category} />
+      <PostList posts={category.posts} horizontal={true} inCategory={true} />
     </div>
   );
 };

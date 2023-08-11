@@ -5,7 +5,7 @@ import {
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { faCopyright, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 const SOURCES: { name: string; href: string; icon: IconDefinition }[] = [
   {
@@ -24,7 +24,7 @@ const Footer = ({ isTransparent = false }: FooterProps) => {
   return (
     <footer>
       <div
-        className={`w-screen ${
+        className={`w-screen transition ${
           isTransparent ? "bg-transparent" : "bg-white dark:bg-black"
         } z-50`}
       >
@@ -38,7 +38,7 @@ const Footer = ({ isTransparent = false }: FooterProps) => {
                     isTransparent ? "text-white" : "text-black dark:text-white"
                   }`}
                 >
-                  <FontAwesomeIcon icon={faCopyright} /> 2023
+                  &copy; 2023
                 </Link>
               </div>
               <div className="flex space-x-4">

@@ -9,6 +9,7 @@ export const authorFields = `
 
 const categoryBaseFields = `
     title,
+    color,
     ${onlySlugField}
 `;
 

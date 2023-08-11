@@ -13,43 +13,44 @@ const Subscriber = () => {
   );
 
   return (
-    <div></div>
-    // <Form onSubmit={submitForm}>
-    //   <Form.Text>Sign up to get recent news</Form.Text>
-    //   <Form.Label htmlFor="name" visuallyHidden>
-    //     Your Name
-    //   </Form.Label>
-    //   <InputGroup className="mb-3">
-    //     <InputGroup.Text id="name">YOUR NAME*</InputGroup.Text>
-    //     <Form.Control
-    //       placeholder=""
-    //       aria-label="Name"
-    //       aria-describedby="name"
-    //       value={name}
-    //       onChange={(event) => {
-    //         setName(event.target.value);
-    //       }}
-    //     />
-    //   </InputGroup>
-    //   <Form.Label htmlFor="email" visuallyHidden>
-    //     Your Email
-    //   </Form.Label>
-    //   <InputGroup className="mb-3">
-    //     <InputGroup.Text id="email">YOUR EMAIL*</InputGroup.Text>
-    //     <Form.Control
-    //       placeholder=""
-    //       aria-label="Email"
-    //       aria-describedby="email"
-    //       value={email}
-    //       onChange={(event) => {
-    //         setEmail(event.target.value);
-    //       }}
-    //     />
-    //   </InputGroup>
-    //   <Button variant="primary" type="submit">
-    //     Submit
-    //   </Button>
-    // </Form>
+    <>
+      <h2 className="text-center text-3xl mt-8">
+        Join me on my software engineering journey
+      </h2>
+      <p className="text-center mt-8">
+        Subscribe my free newsletter to know more about all tech stuff
+      </p>
+      <form className="mt-8">
+        <div className="mb-4">
+          <label htmlFor="name" hidden>
+            Name
+          </label>
+          <input
+            className="shadow appearance-none border border-black dark:border-white bg-white dark:bg-black transition  rounded-full w-full p-4 leading-tight focus:outline-none focus:shadow-inner"
+            id="name"
+            type="text"
+            placeholder="Enter name"
+          />
+        </div>
+        <div className="mb-6">
+          <label htmlFor="email" hidden>
+            Email
+          </label>
+          <input
+            className="shadow appearance-none border border-black dark:border-white  bg-white dark:bg-black transition rounded-full w-full p-4 mb-3 leading-tight focus:outline-none focus:shadow-inner"
+            id="email"
+            type="email"
+            placeholder="Enter email"
+          />
+        </div>
+        <button
+          className="bg-green-800 dark:bg-green-700 hover:bg-green-900 dark:hover:bg-green-800 text-white font-bold p-4 rounded-full w-full focus:outline-none focus:shadow-inner"
+          type="button"
+        >
+          Subscribe to free newsletter
+        </button>
+      </form>
+    </>
   );
 };
 

@@ -10,11 +10,13 @@ import type { PostForCard } from "@models/Post";
 interface PostCardProps {
   post: PostForCard;
   spotlight?: boolean;
+  inCategory?: boolean;
 }
 
 const PostCard = ({
   post: { slug, title, publishedAt, thumbnail, author, categories },
   spotlight = false,
+  inCategory = false,
 }: PostCardProps) => (
   <div className="p-3">
     <div className="flex justify-center content-center overflow-hidden aspect-video scale">
@@ -27,7 +29,9 @@ const PostCard = ({
         />
       </Link>
     </div>
-    <CategoriesLabel categories={categories} spotlight={spotlight} />
+    {!inCategory && (
+      <CategoriesLabel categories={categories} spotlight={spotlight} />
+    )}
     <Link href={`/blog/${slug}`}>
       <h2 className={`${spotlight ? "text-3xl" : "text-xl"}`}>{title}</h2>
     </Link>

@@ -7,8 +7,11 @@ interface AuthorLabelProps {
 
 const AuthorLabel = ({ author: { slug, name } }: AuthorLabelProps) => {
   return (
-    <Link href={`/blog/author/${slug}`}>
-      <p className="inline text-green-800 font-semibold ">{name}</p>
+    <Link
+      href={`/blog/author/${slug}`}
+      className="inline text-green-800 dark:text-green-700 font-semibold"
+    >
+      {name}
     </Link>
   );
 };
