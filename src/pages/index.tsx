@@ -21,27 +21,33 @@ export default function Home() {
           appear={true}
           show={show}
           as="div"
-          className="flex bg-yellow-50"
-          enter="transition-opacity ease-in duration-100]"
+          enter="transition-opacity ease-in duration-300"
           enterFrom="opacity-0"
           enterTo="opacity-100"
         >
           <Universe />
         </Transition>
       }
-      navbarBackgroundColor="transparent"
+      isMenuTransparent={true}
     >
-      <div className="flex flex-col justify-between items-center z-30">
+      <style jsx global>{`
+        body {
+          background-color: black;
+          color: white;
+        }
+      `}</style>
+
+      <div className="flex flex-col w-full h-150vh justify-between items-center z-30 -mt-8vh">
         <Transition
           appear={true}
           show={show}
           as="div"
-          className="flex flex-col w-4/5 sm:w-3/4 md:w-2/3 text-center mt-12 sm:mt-16 md:mt-20"
+          className="flex flex-col w-4/5 sm:w-3/4 md:w-2/3 h-1/3 text-center pt-24 sm:pt-32 md:pt-40 "
         >
           <Transition.Child
             as="h1"
             className="text-3xl sm:text-4xl md:text-5xl"
-            enter="transition-opacity ease-in duration-300 delay-[300ms]"
+            enter="transition-opacity ease-in duration-300 delay-[500ms]"
             enterFrom="opacity-0"
             enterTo="opacity-100"
           >
@@ -51,7 +57,7 @@ export default function Home() {
           <Transition.Child
             as="h2"
             className="text-lg sm:text-2xl md:text-3xl mt-6 sm:mt-8 md:mt-12"
-            enter="transition-opacity ease-in duration-300 delay-[600ms]"
+            enter="transition-opacity ease-in duration-300 delay-[700ms]"
             enterFrom="opacity-0"
             enterTo="opacity-100"
           >
@@ -62,7 +68,7 @@ export default function Home() {
           appear={true}
           show={show}
           as="div"
-          className="flex w-full h-full"
+          className="flex content-center justify-center w-full h-2/3"
           enter="transition-opacity ease-in duration-500 delay-[1000ms]"
           enterFrom="opacity-0"
           enterTo="opacity-100"

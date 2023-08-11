@@ -1,6 +1,5 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
-import { Col, Row } from "react-bootstrap";
 
 import {
   getAllAuthorSlugs,
@@ -23,13 +22,11 @@ interface AuthorPageProps {
 const AuthorPage = ({ author, posts }: AuthorPageProps) => {
   return (
     <PageLayout activeLink={"/blog"}>
-      <Row>
-        <Col md={{ span: 10, offset: 1 }}>
-          <AuthorCard author={author} />
-          <hr />
-          <PostList posts={posts} />
-        </Col>
-      </Row>
+      <div>
+        <AuthorCard author={author} />
+        <hr />
+        <PostList posts={posts} />
+      </div>
     </PageLayout>
   );
 };

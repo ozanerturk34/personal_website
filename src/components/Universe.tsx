@@ -82,7 +82,7 @@ const Stars = () => {
   return (
     <canvas
       ref={ref}
-      className={`w-full h-full fixed z-0`}
+      className={`w-full h-full fixed`}
       height={`${CANVAS_HEIGHT}`}
       width={`${CANVAS_WIDTH}`}
     />
@@ -215,7 +215,7 @@ const Universe = () => {
     startCometTimer();
   }, []);
   return (
-    <div className={`${BASE_CANVAS_CLASSNAMES} bg-black`}>
+    <div className={` ${BASE_CANVAS_CLASSNAMES} bg-black`}>
       <Stars />
       <Stardust startPoint={currentPoint} endPoint={nextPoint} />
       <Comet startPoint={currentPoint} endPoint={nextPoint} />

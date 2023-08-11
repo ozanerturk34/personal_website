@@ -6,26 +6,26 @@ interface PageLayoutProps {
   children: JSX.Element | JSX.Element[];
   activeLink: ActiveLink;
   background?: JSX.Element;
-  navbarBackgroundColor?: string;
+  isMenuTransparent?: boolean;
 }
 
 const PageLayout = ({
   children,
   activeLink,
   background,
-  navbarBackgroundColor,
+  isMenuTransparent = false,
 }: PageLayoutProps) => {
   return (
     <>
       <Header />
-      <Navbar activeLink={activeLink} backgroundColor={navbarBackgroundColor} />
+      <Navbar activeLink={activeLink} isTransparent={isMenuTransparent} />
       <main>
-        <div className="flex min-h-screen max-w-5xl mx-auto pt-16 sm:pt-20 lg:pt-24 px-3">
+        <div className="flex min-h-screen max-w-7xl mx-auto px-3 pt-8vh">
           {children}
         </div>
       </main>
-      <Footer backgroundColor={navbarBackgroundColor} />
       {background}
+      <Footer isTransparent={isMenuTransparent} />
     </>
   );
 };

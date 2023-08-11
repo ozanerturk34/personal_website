@@ -1,5 +1,4 @@
 import type { GetStaticProps } from "next";
-import { Col, Row } from "react-bootstrap";
 
 import { getAllCategoriesWithPosts, getAllPostsForCard } from "@lib/api";
 
@@ -16,29 +15,34 @@ interface BlogProps {
   categories: CategoryWithPosts[];
 }
 
-const Blog = ({ posts, categories }: BlogProps) => (
-  <PageLayout activeLink={"/blog"}>
-    <Col>
-      <Row>
-        {posts.map((post) => (
-          <Col key={post.slug}>
-            <PostCard post={post} />
-          </Col>
-        ))}
-      </Row>
-      <Row>
-        {categories.map((category) => (
-          <Col key={category.slug}>
-            <CategoryCard category={category} />
-          </Col>
-        ))}
-      </Row>
-    </Col>
-    <Col>
-      <Subscriber />
-    </Col>
-  </PageLayout>
-);
+const Blog = ({ posts, categories }: BlogProps) => {
+  const spotlightPost = posts[0];
+  const remainingPosts = posts.slice(1);
+  return (
+    <PageLayout activeLink={"/blog"}>
+      <div className="flex">
+        <div className="w-2/3">
+          <PostCard post={spotlightPost} spotlight={true} />
+          <div className="flex flex-wrap">
+            {remainingPosts.map((post) => (
+              <div key={post.slug} className="w-1/2">
+                <PostCard post={post} />
+              </div>
+            ))}
+          </div>
+          {categories.map((category) => (
+            <div key={category.slug}>
+              <CategoryCard category={category} />
+            </div>
+          ))}
+        </div>
+        <div className="w-1/3">
+          <Subscriber />
+        </div>
+      </div>
+    </PageLayout>
+  );
+};
 
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
   try {

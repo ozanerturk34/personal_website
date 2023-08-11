@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import useScrollNavbar from "@hooks/useScrollNavbar";
+import ThemeSwitch from "./ThemeSwitch";
 
 type NavbarLink = "/project" | "/about" | "/contact" | "/blog";
 
@@ -21,9 +22,9 @@ const NAVIGATION: { name: string; href: NavbarLink }[] = [
 export type ActiveLink = NavbarLink | null;
 interface NavbarProps {
   activeLink: ActiveLink;
-  backgroundColor?: string;
+  isTransparent?: boolean;
 }
-const Navbar = ({ activeLink, backgroundColor = "bg-black" }: NavbarProps) => {
+const Navbar = ({ activeLink, isTransparent = false }: NavbarProps) => {
   const { top, display, closeDisclosure } = useScrollNavbar();
   return (
     <Disclosure as="nav">
@@ -33,14 +34,22 @@ const Navbar = ({ activeLink, backgroundColor = "bg-black" }: NavbarProps) => {
         }
         return (
           <div
-            className={`${display} fixed w-screen ${backgroundColor} z-50`}
+            className={`${display} fixed w-screen ${
+              isTransparent ? "bg-transparent" : "bg-white dark:bg-black"
+            } z-50`}
             style={{ top }}
           >
-            <div className="max-w-5xl px-3 sm:px-6 mx-auto">
+            <div className="max-w-7xl px-3 sm:px-6 mx-auto">
               <div className="relative flex h-16 items-center justify-between">
                 <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
-                  {/* Mobile menu button*/}
-                  <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  {!isTransparent && <ThemeSwitch />}
+                  <Disclosure.Button
+                    className={`relative inline-flex items-center justify-center rounded-md p-2 ${
+                      isTransparent
+                        ? "text-white"
+                        : " text-gray-900 dark:text-white"
+                    } hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white`}
+                  >
                     <span className="absolute -inset-0.5" />
                     <span className="sr-only">Open main menu</span>
                     {open ? (
@@ -60,17 +69,20 @@ const Navbar = ({ activeLink, backgroundColor = "bg-black" }: NavbarProps) => {
                 </div>
                 <div className="flex flex-1 items-center justify-between sm:items-stretch">
                   <div className="flex flex-shrink-0 items-center">
-                    {/* <Image
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                    width={100}
-                    height={100}
-                  /> */}
-                    <Link href="/">Ozan Erturk</Link>
+                    <Link
+                      href="/"
+                      className={`${
+                        isTransparent
+                          ? "text-white"
+                          : "text-gray-900 dark:text-white"
+                      }`}
+                    >
+                      Ozan Erturk
+                    </Link>
                   </div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
+                      {!isTransparent && <ThemeSwitch />}
                       {NAVIGATION.map((item) => (
                         <Link
                           key={item.href}
@@ -78,7 +90,11 @@ const Navbar = ({ activeLink, backgroundColor = "bg-black" }: NavbarProps) => {
                           className={`rounded-md px-3 py-2 text-sm font-medium ${
                             activeLink === item.href
                               ? "bg-gray-900 text-white"
-                              : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                              : `${
+                                  isTransparent
+                                    ? "text-gray-300"
+                                    : "text-gray-900 dark:text-gray-300"
+                                }  hover:bg-gray-700 hover:text-white`
                           }`}
                           aria-current={activeLink ? "page" : undefined}
                         >
@@ -110,7 +126,11 @@ const Navbar = ({ activeLink, backgroundColor = "bg-black" }: NavbarProps) => {
                   ${
                     activeLink === item.href
                       ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                      : `${
+                          isTransparent
+                            ? "text-gray-300"
+                            : "text-gray-900 dark:text-gray-300"
+                        }  hover:bg-gray-700 hover:text-white`
                   }`}
                       aria-current={activeLink ? "page" : undefined}
                     >

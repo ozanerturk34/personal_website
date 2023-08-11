@@ -21,7 +21,6 @@ const SolarSystem = () => {
     if (!ctx) {
       return;
     }
-
     const drawOrbit = (y: number) => {
       ctx.strokeStyle = "white";
       ctx.beginPath();
@@ -51,7 +50,7 @@ const SolarSystem = () => {
   return (
     <canvas
       ref={ref}
-      className="absolute z-30"
+      className="absolute z-30 h-full"
       height={CANVAS_HEIGHT}
       width={CANVAS_WIDTH}
     />

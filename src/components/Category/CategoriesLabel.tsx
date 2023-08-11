@@ -3,15 +3,23 @@ import CategoryLabel from "./CategoryLabel";
 
 interface CategoriesLabelProps {
   categories: CategoryBase[];
+  spotlight?: boolean;
 }
 
-const CategoriesLabel = ({ categories }: CategoriesLabelProps) => {
+const CategoriesLabel = ({
+  categories,
+  spotlight = false,
+}: CategoriesLabelProps) => {
   return (
-    <span>
+    <div className="flex my-1">
       {categories.map((category) => (
-        <CategoryLabel category={category} key={category.slug} />
+        <CategoryLabel
+          category={category}
+          key={category.slug}
+          spotlight={spotlight}
+        />
       ))}
-    </span>
+    </div>
   );
 };
 

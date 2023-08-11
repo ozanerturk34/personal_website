@@ -1,6 +1,5 @@
 import { useCallback, useState, useReducer } from "react";
 import { useRouter } from "next/router";
-import { Alert, Button, Form } from "react-bootstrap";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
@@ -106,44 +105,41 @@ const Contact = () => {
     <PageLayout activeLink={"/contact"}>
       <div>
         {!isContacted ? (
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {error.has && (
-              <Alert variant="danger">
-                <Alert.Heading>{error.message}</Alert.Heading>
+              <div>
+                <h1>{error.message}</h1>
                 <hr />
-                <div className="d-flex justify-content-end">
-                  <Button
+                <div className="flex  justify-end">
+                  <button
                     onClick={() => dispatchError({ type: "no_error" })}
-                    variant="outline-danger"
                     className="mt-3"
                   >
                     Okay
-                  </Button>
+                  </button>
                 </div>
-              </Alert>
+              </div>
             )}
-            <Form.Text className="text-white">
-              You want to contact me?? Go ahead you
-            </Form.Text>
-            <Form.Group className="mb-3">
-              <Form.Label htmlFor="name">Your Name</Form.Label>
-              <Form.Control
+            <h2>You want to contact me?? Go ahead you</h2>
+            <div className="mb-3">
+              <label htmlFor="name">Your Name</label>
+              {/* <Form.Control
                 {...register("name")}
                 placeholder=""
                 aria-label="Name"
                 aria-describedby="name"
                 aria-invalid={!!errors.name}
                 isInvalid={!!errors.name}
-              />
-              {!!errors.name && (
+              /> */}
+              {/* {!!errors.name && (
                 <Form.Control.Feedback type="invalid">
                   {errors.name.message}
                 </Form.Control.Feedback>
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label htmlFor="email">Your Email</Form.Label>
-              <Form.Control
+              )} */}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email">Your Email</label>
+              {/* <Form.Control
                 {...register("email")}
                 placeholder=""
                 aria-label="Email"
@@ -155,13 +151,13 @@ const Contact = () => {
                 <Form.Control.Feedback type="invalid">
                   {errors.email.message}
                 </Form.Control.Feedback>
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label htmlFor="description">
+              )} */}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="description">
                 Let me know what is on your mind 🙂
-              </Form.Label>
-              <Form.Control
+              </label>
+              {/* <Form.Control
                 {...register("description")}
                 as="textarea"
                 rows={5}
@@ -175,29 +171,23 @@ const Contact = () => {
                 <Form.Control.Feedback type="invalid">
                   {errors.description.message}
                 </Form.Control.Feedback>
-              )}
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
+              )} */}
+            </div>
+            <button type="submit">Submit</button>
+          </form>
         ) : (
-          <Alert variant="success">
-            <Alert.Heading>
+          <div>
+            <h1>
               Thanks for getting into contact. I will reach out to you as soon
               as possible!
-            </Alert.Heading>
+            </h1>
             <hr />
-            <div className="d-flex justify-content-end">
-              <Button
-                onClick={() => router.push("/")}
-                variant="outline-success"
-                className="mt-3"
-              >
+            <div className="flex justify-content">
+              <button onClick={() => router.push("/")} className="mt-3">
                 Thanks! Take me back to homepage
-              </Button>
+              </button>
             </div>
-          </Alert>
+          </div>
         )}
       </div>
     </PageLayout>

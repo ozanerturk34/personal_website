@@ -1,6 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
-import { Col, Row } from "react-bootstrap";
 
 import {
   getAllCategorySlugs,
@@ -23,13 +22,11 @@ interface CategoryPageProps {
 const CategoryPage = ({ category, posts }: CategoryPageProps) => {
   return (
     <PageLayout activeLink={"/blog"}>
-      <Row>
-        <Col md={{ span: 10, offset: 1 }}>
-          <CategoryHeader category={category} />
-          <hr />
-          <PostList posts={posts} />
-        </Col>
-      </Row>
+      <div>
+        <CategoryHeader category={category} />
+        <hr />
+        <PostList posts={posts} />
+      </div>
     </PageLayout>
   );
 };

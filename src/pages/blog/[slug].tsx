@@ -1,6 +1,5 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
-import { Col, Row } from "react-bootstrap";
 
 import { getAllPostSlugs, getPostBySlug } from "@lib/api";
 
@@ -17,15 +16,13 @@ interface PostPageProps {
 
 const PostPage = ({ post }: PostPageProps) => (
   <PageLayout activeLink={"/blog"}>
-    <Row>
-      <Col md={{ span: 10, offset: 1 }}>
-        <PostHeader post={post} />
-        <hr />
-        <PostContent content={post.content} />
-        <hr />
-        <PostFooter post={post} />
-      </Col>
-    </Row>
+    <div>
+      <PostHeader post={post} />
+      <hr />
+      <PostContent content={post.content} />
+      <hr />
+      <PostFooter post={post} />
+    </div>
   </PageLayout>
 );
 
