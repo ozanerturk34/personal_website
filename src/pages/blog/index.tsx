@@ -21,12 +21,12 @@ const Blog = ({ posts, categories }: BlogProps) => {
   const remainingPosts = posts.slice(1);
   return (
     <PageLayout activeLink={"/blog"}>
-      <div className="flex">
-        <div className="w-2/3">
+      <div className="flex flex-col lg:flex-row">
+        <div className="w-full lg:w-2/3">
           <PostCard post={spotlightPost} spotlight={true} />
           <div className="flex flex-wrap">
             {remainingPosts.map((post) => (
-              <div key={post.slug} className="w-1/2">
+              <div key={post.slug} className="w-full sm:w-1/2">
                 <PostCard post={post} />
               </div>
             ))}
@@ -37,7 +37,7 @@ const Blog = ({ posts, categories }: BlogProps) => {
             </div>
           ))}
         </div>
-        <div className="w-1/3 flex flex-col py-4 px-8">
+        <div className="w-full lg:w-1/3 flex flex-col py-4 px-2 sm:px-4 md:px-16 lg:px-8">
           <Searchbar />
           <Subscriber />
         </div>

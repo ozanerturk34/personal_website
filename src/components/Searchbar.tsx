@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Searchbar = () => {
   const [keyword, setKeyword] = useState<string>("");
   const router = useRouter();
-  const onSearch: FormEventHandler = useCallback(
+  const onSearch: FormEventHandler<HTMLFormElement> = useCallback(
     (e) => {
       e.preventDefault();
       router.push(`/blog/search?keyword=${keyword}`);
@@ -17,7 +17,7 @@ const Searchbar = () => {
   return (
     <div className="mb-4">
       <form onSubmit={onSearch}>
-        <div className="flex shadow appearance-none border border-black dark:border-white rounded-full w-full p-4 leading-tight focus:outline-none focus:shadow-inner">
+        <div className="flex shadow appearance-none border border-black dark:border-white rounded-full w-full p-3 leading-tight focus:outline-none focus:shadow-inner">
           <button type="submit" className="mr-2">
             <FontAwesomeIcon
               icon={faSearch}
@@ -35,7 +35,7 @@ const Searchbar = () => {
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
-          <button className="mr-2" onClick={() => setKeyword("")}>
+          <button className="mr-2 ml-1" onClick={() => setKeyword("")}>
             <FontAwesomeIcon icon={faClose} />
           </button>
         </div>

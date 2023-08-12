@@ -33,7 +33,7 @@ const CategoryLabel = ({
     <Link
       href={`/blog/topics/${slug}`}
       className={`mr-2 ${COLORS[color]} font-semibold ${
-        spotlight ? "text-lg" : "text-base"
+        spotlight ? "sm:text-lg" : ""
       }`}
     >
       {title}

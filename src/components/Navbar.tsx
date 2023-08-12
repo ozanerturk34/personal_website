@@ -39,8 +39,8 @@ const Navbar = ({ activeLink, isTransparent = false }: NavbarProps) => {
             } z-50`}
             style={{ top }}
           >
-            <div className="max-w-7xl px-3 sm:px-6 mx-auto relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
+            <div className="max-w-7xl px-4 sm:px-6 mx-auto relative flex h-16 items-center justify-between">
+              <div className="absolute inset-y-0 right-2 flex items-center sm:hidden">
                 {!isTransparent && <ThemeSwitch />}
                 <Disclosure.Button
                   className={`relative inline-flex items-center justify-center rounded-md p-2 ${
@@ -114,7 +114,7 @@ const Navbar = ({ activeLink, isTransparent = false }: NavbarProps) => {
               leaveTo="transform opacity-0 scale-95"
             >
               <Disclosure.Panel className="sm:hidden">
-                <div className="flex justify-end mx-2">
+                <div className="flex justify-end mx-2 mb-2">
                   {NAVIGATION.map((item) => (
                     <Link
                       key={item.name}

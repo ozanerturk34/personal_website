@@ -18,7 +18,7 @@ const PostCard = ({
   spotlight = false,
   inCategory = false,
 }: PostCardProps) => (
-  <div className="p-3">
+  <div className="p-1 sm:p-3">
     <div className="flex justify-center content-center overflow-hidden aspect-video scale">
       <Link href={`/blog/${slug}`}>
         <SanityImage
@@ -33,9 +33,13 @@ const PostCard = ({
       <CategoriesLabel categories={categories} spotlight={spotlight} />
     )}
     <Link href={`/blog/${slug}`}>
-      <h2 className={`${spotlight ? "text-3xl" : "text-xl"}`}>{title}</h2>
+      <h2 className={`text-xl ${spotlight ? "sm:text-3xl" : ""}`}>{title}</h2>
     </Link>
-    <span className={`${spotlight ? "text-base" : "text-sm"} my-1`}>
+    <span
+      className={`text-gray-600 dark:text-gray-300 text-sm ${
+        spotlight ? "sm:text-base" : ""
+      } my-1`}
+    >
       by <AuthorLabel author={author} /> - <DateLabel date={publishedAt} />
     </span>
   </div>

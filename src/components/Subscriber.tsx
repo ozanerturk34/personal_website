@@ -4,7 +4,7 @@ const Subscriber = () => {
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
 
-  const submitForm: FormEventHandler<HTMLFormElement> = useCallback(
+  const onSubmitForm: FormEventHandler<HTMLFormElement> = useCallback(
     async (event) => {
       event.preventDefault();
       alert(`${name + " - " + email}`);
@@ -20,16 +20,18 @@ const Subscriber = () => {
       <p className="text-center mt-8">
         Subscribe my free newsletter to know more about all tech stuff
       </p>
-      <form className="mt-8">
+      <form className="mt-8" onSubmit={onSubmitForm}>
         <div className="mb-4">
           <label htmlFor="name" hidden>
             Name
           </label>
           <input
-            className="shadow appearance-none border border-black dark:border-white bg-white dark:bg-black transition  rounded-full w-full p-4 leading-tight focus:outline-none focus:shadow-inner"
+            className="shadow appearance-none border border-black dark:border-white bg-white dark:bg-black transition  rounded-full w-full p-3 leading-tight focus:outline-none focus:shadow-inner"
             id="name"
             type="text"
             placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="mb-6">
@@ -37,10 +39,12 @@ const Subscriber = () => {
             Email
           </label>
           <input
-            className="shadow appearance-none border border-black dark:border-white  bg-white dark:bg-black transition rounded-full w-full p-4 mb-3 leading-tight focus:outline-none focus:shadow-inner"
+            className="shadow appearance-none border border-black dark:border-white  bg-white dark:bg-black transition rounded-full w-full p-3 mb-3 leading-tight focus:outline-none focus:shadow-inner"
             id="email"
             type="email"
             placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <button
